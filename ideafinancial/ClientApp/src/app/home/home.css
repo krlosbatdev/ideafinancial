@@ -1,0 +1,21 @@
+
+.submit {
+  background-color: #329C54;
+  color: white;
+}
+
+.centered {
+  margin: auto;
+  display: inline-block;
+}
+.top-50 {
+  margin-top: 50px;
+}
+
+h2 {
+  margin-bottom: 0px;
+}
+
+.description {
+  color: #aeafaf;
+}

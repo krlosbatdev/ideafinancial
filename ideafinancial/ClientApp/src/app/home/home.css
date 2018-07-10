@@ -1,21 +1,26 @@
 
-.submit {
-  background-color: #329C54;
-  color: white;
-}
-
 .centered {
   margin: auto;
   display: inline-block;
 }
-.top-50 {
-  margin-top: 50px;
+
+.description {
+  color: #aeafaf;
+}
+
+.green {
+  background-color: #329C54;
+  color: white;
 }
 
 h2 {
   margin-bottom: 0px;
 }
 
-.description {
-  color: #aeafaf;
+.top-50 {
+  margin-top: 50px;
 }
+
+
+
+

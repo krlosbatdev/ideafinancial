@@ -1,0 +1,17 @@
+.submit {
+  color: #329C54;
+}
+.full-width {
+  width: 80%;
+}
+
+form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.top-35 {
+  margin-top: 35px;
+}
+

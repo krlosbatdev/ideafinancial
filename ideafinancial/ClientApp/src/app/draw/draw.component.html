@@ -1,0 +1,28 @@
+<mat-toolbar class="mat-elevation-z3">
+  <button  class="btn btn-link" (click)="goToHome()">X</button> Make a draw
+</mat-toolbar>
+
+<mat-card>
+  <div class="row">
+    <form class="form">
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Amount *" [formControl]="amountFormControl"
+               [errorStateMatcher]="matcher">
+        <mat-error *ngIf="!amountFormControl.hasError('required')">
+          Please enter a valid amount.
+        </mat-error>
+        <mat-error *ngIf="amountFormControl.hasError('required')">
+          Amount is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div class="row top-35">
+    <div class="col-sm-6 pull-right text-right">
+      <button mat-button class="submit" (click)="submit()">SUBMIT</button>
+    </div>
+  </div>
+
+</mat-card>
+

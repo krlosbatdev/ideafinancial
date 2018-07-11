@@ -1,3 +1,4 @@
+using AutoMapper;
 using ideafinancial.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,7 +23,7 @@ namespace ideafinancial
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
+            services.AddAutoMapper();
             services.AddDbContext<IdeafinancialDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             // In production, the Angular files will be served from this directory

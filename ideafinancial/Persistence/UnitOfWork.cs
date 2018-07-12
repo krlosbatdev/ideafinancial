@@ -1,9 +1,11 @@
 ﻿namespace ideafinancial.Persistence
 {
+
+
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IIdeafinancialDbContext _dbContext;
-        public IUserRepository UserRepository;
+        public IUserRepository UserRepository { get; private set; }
 
         public UnitOfWork(IIdeafinancialDbContext dbContext, IUserRepository userRepository)
         {

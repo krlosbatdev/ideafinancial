@@ -9,21 +9,19 @@ namespace ideafinancial.Controllers
     public class UsersController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IUserRepository _userRepository;
         private readonly IUnitOfWork _unitOfWork;
 
 
-        public UsersController(IMapper mapper, IUserRepository userRepository, IUnitOfWork unitOfWork)
+        public UsersController(IMapper mapper, IUnitOfWork unitOfWork)
         {
             this._mapper = mapper;
-            _userRepository = userRepository;
             _unitOfWork = unitOfWork;
         }
 
         [HttpGet("/api/users/{id}")]
         public IActionResult GetUserById(int id)
         {
-            var user = _userRepository.GetUser(id);
+            var user = _unitOfWork.UserRepository.GetUser(id);
             if (user == null)
                 return NotFound("User not found");
 
@@ -33,7 +31,7 @@ namespace ideafinancial.Controllers
         [HttpPost("/api/users")]
         public IActionResult Draw([FromBody]DrawResource draw)
         {
-            var user = _userRepository.GetUser(draw.UserId);
+            var user = _unitOfWork.UserRepository.GetUser(draw.UserId);
             if (user == null)
                 return NotFound("User not found");
 

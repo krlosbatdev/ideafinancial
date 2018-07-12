@@ -2,19 +2,19 @@
   Home
 </mat-toolbar>
 
-<mat-card >
+<mat-card *ngIf="user">
   <div class="row">
     <div class="col-sm-4">
       <div class="centered text-left">
-        <h2>$50,000</h2>
+        <h2>${{user.balance}}</h2>
         <span class="small description">
           Balance
-        </span> 
+        </span>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="centered text-left">
-        <h2>$50,000</h2>
+        <h2>${{user.availableFunds}}</h2>
         <span class="small description">
           Available funds
         </span>
@@ -22,18 +22,18 @@
     </div>
     <div class="col-sm-4">
       <div class="centered text-left">
-        <h2>$100,000</h2> 
+        <h2>${{user.creditLimit}}</h2>
         <span class="small description">
           Credit limit
-        </span>        
+        </span>
       </div>
     </div>
   </div>
-  
+
   <div class="row top-50">
     <div class="col-sm-6 pull-right text-right">
       <button mat-raised-button class="green" (click)="draw()">MAKE A DRAW</button>
     </div>
   </div>
-    
+
 </mat-card>

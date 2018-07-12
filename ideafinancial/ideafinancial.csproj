@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\e2e\app\" />
+    <Folder Include="ClientApp\src\app\services\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

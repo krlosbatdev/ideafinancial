@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-
+import { UserService } from "../services/user.service";
+import { User } from "../models/user.model";
 
 
 @Component({
@@ -12,16 +13,21 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class DrawComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  amountFormControl;
+
+  constructor(private router: Router, public userService: UserService) {
+
+   }
 
   ngOnInit() {
+    this.amountFormControl = new FormControl('', [
+      Validators.required,
+      Validators.max(this.userService.user.availableFunds),
+      Validators.min(1)
+    ]);
   }
 
-  amountFormControl = new FormControl('', [
-    Validators.required,
-    Validators.max(5000),
-    Validators.min(1)
-  ]);
+
 
   matcher = new MyErrorStateMatcher();
 
@@ -30,7 +36,7 @@ export class DrawComponent implements OnInit {
   }
 
   submit(){
-    
+    this.userService.draw(this.amountFormControl.value).subscribe(a => this.router.navigateByUrl('/', { skipLocationChange: true }) );
   }
 }
 

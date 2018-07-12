@@ -14,5 +14,11 @@ namespace ideafinancial.Models
         public decimal CreditLimit { get; set; }
         public decimal Balance { get; set; }
         public decimal AvailableFunds { get; set; }
+
+        public void Draw(decimal drawAmount)
+        {
+            this.AvailableFunds -= drawAmount;
+            this.Balance += drawAmount;
+        }
     }
 }

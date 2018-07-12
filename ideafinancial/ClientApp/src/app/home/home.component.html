@@ -6,7 +6,7 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="centered text-left">
-        <h2>${{user.balance}}</h2>
+        <h2>{{user.balance | currency:'USD'}}</h2>
         <span class="small description">
           Balance
         </span>
@@ -14,7 +14,7 @@
     </div>
     <div class="col-sm-4">
       <div class="centered text-left">
-        <h2>${{user.availableFunds}}</h2>
+        <h2>{{user.availableFunds | currency:'USD'}}</h2>
         <span class="small description">
           Available funds
         </span>
@@ -22,7 +22,7 @@
     </div>
     <div class="col-sm-4">
       <div class="centered text-left">
-        <h2>${{user.creditLimit}}</h2>
+        <h2>{{user.creditLimit | currency:'USD'}}</h2>
         <span class="small description">
           Credit limit
         </span>

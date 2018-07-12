@@ -15,13 +15,13 @@ export class HomeComponent implements OnInit{
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getUser("Ann")
+    this.userService.getUser(1)
       .subscribe(user => this.user = user as User
     );
   }
 
   draw() {
-    this.router.navigateByUrl('/draw', { skipLocationChange: true });
+    this.router.navigate(['/draw',{userId: this.user.id, availableFunds: this.user.availableFunds}], { skipLocationChange: true });
   }
 
 }

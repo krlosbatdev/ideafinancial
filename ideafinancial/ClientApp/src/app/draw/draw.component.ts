@@ -14,6 +14,7 @@ import { User } from "../models/user.model";
 export class DrawComponent implements OnInit {
 
   amountFormControl;
+  loading = false;
 
   constructor(private router: Router, public userService: UserService) {
 
@@ -35,8 +36,10 @@ export class DrawComponent implements OnInit {
     this.router.navigateByUrl('/', { skipLocationChange: true });
   }
 
-  submit(){
-    this.userService.draw(this.amountFormControl.value).subscribe(a => this.router.navigateByUrl('/', { skipLocationChange: true }) );
+  submit() {
+    this.loading = true;
+    this.userService.draw(this.amountFormControl.value)
+      .subscribe(a => this.router.navigateByUrl('/', { skipLocationChange: true }));
   }
 }
 

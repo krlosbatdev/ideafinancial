@@ -2,38 +2,42 @@
   Home
 </mat-toolbar>
 
-<mat-card *ngIf="user">
-  <div class="row">
-    <div class="col-sm-4">
-      <div class="centered text-left">
-        <h2>{{user.balance | currency:'USD'}}</h2>
-        <span class="small description">
-          Balance
-        </span>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="centered text-left">
-        <h2>{{user.availableFunds | currency:'USD'}}</h2>
-        <span class="small description">
-          Available funds
-        </span>
-      </div>
-    </div>
-    <div class="col-sm-4">
-      <div class="centered text-left">
-        <h2>{{user.creditLimit | currency:'USD'}}</h2>
-        <span class="small description">
-          Credit limit
-        </span>
-      </div>
-    </div>
-  </div>
+<mat-card *ngIf="user; else spinner">
+      <div class="row" >
+          <div class="col-sm-4">
+            <div class="centered text-left">
+              <h2>{{user.balance | currency:'USD'}}</h2>
+              <span class="small description">
+                Balance
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="centered text-left">
+              <h2>{{user.availableFunds | currency:'USD'}}</h2>
+              <span class="small description">
+                Available funds
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="centered text-left">
+              <h2>{{user.creditLimit | currency:'USD'}}</h2>
+              <span class="small description">
+                Credit limit
+              </span>
+            </div>
+          </div>
+        </div>
 
-  <div class="row top-50">
-    <div class="col-sm-6 pull-right text-right">
-      <button mat-raised-button class="green" (click)="draw()">MAKE A DRAW</button>
-    </div>
-  </div>
-
+        <div class="row top-50">
+          <div class="col-sm-6 pull-right text-right">
+            <button mat-raised-button class="green" (click)="draw()">MAKE A DRAW</button>
+          </div>
+        </div>
 </mat-card>
+
+<ng-template #spinner>
+    <mat-spinner class="spinner"></mat-spinner>
+</ng-template>
+

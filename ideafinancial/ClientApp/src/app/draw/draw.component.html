@@ -2,29 +2,32 @@
   <button  class="btn btn-link" (click)="goToHome()">X</button> Make a draw
 </mat-toolbar>
 
-<mat-card>
+<mat-card *ngIf="!loading; else spinner">
   <div class="row">
-    <form class="form">
-      <mat-form-field class="full-width">
-        <input matInput
-          placeholder="Amount *"
-          [formControl]="amountFormControl"
-          [errorStateMatcher]="matcher">
-        <mat-error *ngIf="amountFormControl.hasError('max') || amountFormControl.hasError('max')">
-          Please enter an amount between 1 and {{userService.user.availableFunds}}.
-        </mat-error>
-        <mat-error *ngIf="amountFormControl.hasError('required')">
-          Amount is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-    </form>
-  </div>
-
-  <div class="row top-35">
-    <div class="col-sm-6 pull-right text-right">
-      <button mat-button class="submit" (click)="submit()">SUBMIT</button>
+      <form class="form">
+        <mat-form-field class="full-width">
+          <input matInput
+            placeholder="Amount *"
+            [formControl]="amountFormControl"
+            [errorStateMatcher]="matcher">
+          <mat-error *ngIf="amountFormControl.hasError('max') || amountFormControl.hasError('max')">
+            Please enter an amount between 1 and {{userService.user.availableFunds}}.
+          </mat-error>
+          <mat-error *ngIf="amountFormControl.hasError('required')">
+            Amount is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </form>
     </div>
-  </div>
 
+    <div class="row top-35">
+      <div class="col-sm-6 pull-right text-right">
+        <button mat-button class="submit" (click)="submit()">SUBMIT</button>
+      </div>
+    </div>
 </mat-card>
+
+<ng-template #spinner>
+    <mat-spinner class="spinner"></mat-spinner>
+</ng-template>
 

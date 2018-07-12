@@ -22,8 +22,14 @@ namespace ideafinancial
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IIdeafinancialDbContext, IdeafinancialDbContext>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
             services.AddAutoMapper();
+
             services.AddDbContext<IdeafinancialDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
 
             // In production, the Angular files will be served from this directory

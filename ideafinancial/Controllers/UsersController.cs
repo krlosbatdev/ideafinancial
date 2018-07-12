@@ -3,25 +3,27 @@ using ideafinancial.Controllers.Resources;
 using ideafinancial.Models;
 using ideafinancial.Persistence;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace ideafinancial.Controllers
 {
     public class UsersController : Controller
     {
-        private readonly IdeafinancialDbContext _dbContext;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UsersController(IdeafinancialDbContext dbContext, IMapper mapper)
+
+        public UsersController(IMapper mapper, IUserRepository userRepository, IUnitOfWork unitOfWork)
         {
-            _dbContext = dbContext;
             this._mapper = mapper;
+            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet("/api/users/{id}")]
         public IActionResult GetUserById(int id)
         {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Id == id);
+            var user = _userRepository.GetUser(id);
             if (user == null)
                 return NotFound("User not found");
 
@@ -31,7 +33,7 @@ namespace ideafinancial.Controllers
         [HttpPost("/api/users")]
         public IActionResult Draw([FromBody]DrawResource draw)
         {
-            var user = _dbContext.Users.FirstOrDefault(u => u.Id == draw.UserId);
+            var user = _userRepository.GetUser(draw.UserId);
             if (user == null)
                 return NotFound("User not found");
 
@@ -40,7 +42,7 @@ namespace ideafinancial.Controllers
 
             user.Draw(draw.Amount);
 
-            _dbContext.SaveChanges();
+            _unitOfWork.Complete();
 
             return Ok();
         }

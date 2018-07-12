@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ideafinancial.Persistence
 {
-    public class IdeafinancialDbContext : DbContext
+    public class IdeafinancialDbContext : DbContext, IIdeafinancialDbContext
     {
         public IdeafinancialDbContext(DbContextOptions<IdeafinancialDbContext> options)
             : base(options)

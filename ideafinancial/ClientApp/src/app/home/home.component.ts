@@ -11,11 +11,7 @@ import { User } from "../models/user.model";
 })
 export class HomeComponent implements OnInit{
   user: User;
-
-  color = 'primary';
-  mode = 'determinate';
-  value = 50;
-
+  
   constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
